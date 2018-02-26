@@ -1856,7 +1856,7 @@ else
 		   Key adminKey = KeyFactory.createKey("Admin", "admin");
            Entity a=new Entity("Admin",adminKey);
            String msg="QuakeCoRE 2018 Annual Meeting - early September,2018";
-           String pwd="********";
+           String pwd="******";
            try{
            a.setProperty("msg",msg);
            a.setProperty("password",UserService.hashPassword(pwd));
