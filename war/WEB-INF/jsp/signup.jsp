@@ -107,7 +107,7 @@
 	 <label class="col-xs-3 control-label">Category</label>
         <div class="col-xs-9 selectContainer" id="comboMargin">
             <select class="form-control" name="category" id="category">
-            	<option value="uniresearcher">University - Researcher</option>
+            	<!-- <option value="uniresearcher">University - Researcher</option>
             	<option value="unipostdoc">University - Post Doctoral Fellow</option>
                 <option value="govt">Government - Local/Regional/National</option>
                 <option value="govtresearcher">Government - Researcher</option>
@@ -117,7 +117,9 @@
                 <option value="none">Retired / Unemployed</option>
                 <option value="schoolteacher">School Teacher - Primary/Secondary</option>
                 <option value="pgstudent">Student - Post Graduate</option>
-                <option value="ugstudent">Student - Undergraduate</option>
+                <option value="ugstudent">Student - Undergraduate</option> -->
+                <option value="ai">Associate Investigator - AI</option>
+                <option value="pi">Principle Investigator - PI</option>
                 <option value="other">Other</option>
             </select>
         </div>
@@ -441,7 +443,7 @@
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
 	

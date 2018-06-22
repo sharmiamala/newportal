@@ -3,13 +3,14 @@ package myproject.practice.com;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
+//import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.google.appengine.api.datastore.Key;
+//import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
 public class User {
@@ -68,8 +69,7 @@ public class User {
 	    @Persistent
 	    private String iwi;
 	    
-	    
-	    
+	   
 		public String getCountry() {
 			return country;
 		}
@@ -79,8 +79,6 @@ public class User {
 		public String getIwi() {
 			return iwi;
 		}
-		
-		
 		public void setCountry(String country) {
 			this.country = country;
 		}
@@ -206,6 +204,5 @@ public class User {
 			public void setMailLists(List<String> mailLists) {
 				this.mailLists = mailLists;
 			}
-	    
-	    
+			
 }

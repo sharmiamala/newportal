@@ -153,7 +153,7 @@ String nextpage="expiry";
 	}
 	public static void sendNewPubDeatilsToUser(String receiverEmail,String number,String aticleTitle)
 	{
-		//System.out.println("came to /sendNewPubDeatilsToUser");
+		System.out.println("came to /sendNewPubDeatilsToUser");
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
 		Email mm = (Email) context.getBean("Email");
 		if (!(Strings.isNullOrEmpty(number)) && !(Strings.isNullOrEmpty(aticleTitle)) ) {
@@ -166,8 +166,8 @@ String nextpage="expiry";
 			bodyText.append("Please forward this message to your co-authors."+"\r\n\n");
 			bodyText.append("Thank you,"+"\r\n");
 			bodyText.append("The QuakeCoRE Team");
-			mm.sendMail(Constants.adminEmailId,receiverEmail, "Your new QuakeCoRE publication number",
-					bodyText.toString() );
+			System.out.println(bodyText.toString() +" -sending to:"+receiverEmail);
+			//mm.sendMail(Constants.adminEmailId,receiverEmail, "Your new QuakeCoRE publication number",bodyText.toString() );//TODO: uncomment this before deploying live
 		}
 	}
 	

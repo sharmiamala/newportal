@@ -50,9 +50,9 @@
 				      	<div id="username"  style="display:none;">
 								${name}
 						</div>
-				        <div id="allpublications"  style="display:none;">
+				        <%-- <div id="allpublications"  style="display:none;">
 								${allPublicationList}
-						</div>
+						</div> --%>
 						<div id="search"  class="well well-sm" style="display:block;">
 							To find a particular publication press Ctrl F.
 							<!-- <br>To refresh the page to see latest additions press f5. -->
@@ -72,14 +72,16 @@
 		            <tr id="rowFont">
 		                <th>ID</th>
 		                <th>Details</th>
+						<th>Affiliation</th>
 						<th>Funding</th>
 						<th>Article</th>
 						<th>Status</th>
 						<th>Year</th>
+						<!-- <th>AI/PI</th> -->
 		            </tr>
 		            <c:forEach var="pub" items="${allPublicationList}">
 		                <tr id="rowFont">
-		                    <c:if test="${not empty pub.properties.pubIdStr4digit}"><td><c:out value="${pub.properties.pubIdStr4digit}" /></td></c:if> 
+		                    <td><c:if test="${not empty pub.properties.pubIdStr4digit}"><c:out value="${pub.properties.pubIdStr4digit}" /></c:if></td> 
 		                   <td> 
 							<c:if test="${not empty pub.properties.author}"><c:out value="${pub.properties.author}"/>'</c:if> 
 							<c:if test="${not empty pub.properties.title}"><c:out value="${pub.properties.title}"/>',</c:if> 
@@ -91,10 +93,12 @@
 							<c:if test="${not empty pub.properties.url}">,<c:out value="${pub.properties.url}"/></c:if>
 							<c:if test="${not empty pub.properties.publishDate}">,<c:out value="${pub.properties.publishDate}"/>.</c:if>
 							</td>
-							<c:if test="${not empty pub.properties.fund}"><td><c:out value="${pub.properties.fund}"/></td></c:if> 
-							<c:if test="${not empty pub.properties.article}"><td><c:out value="${pub.properties.article}"/></td></c:if> 
-							<c:if test="${not empty pub.properties.status}"><td><c:out value="${pub.properties.status}" /></td></c:if> 
-							<c:if test="${not empty pub.properties.year}"><td><c:out value="${pub.properties.year}" /></td></c:if>
+							<td><c:if test="${not empty pub.properties.aff}"><c:out value="${pub.properties.aff}"/></c:if></td>
+							<td><c:if test="${not empty pub.properties.fund}"><c:out value="${pub.properties.fund}"/></c:if></td>
+							<td><c:if test="${not empty pub.properties.article}"><c:out value="${pub.properties.article}"/></c:if></td>
+							<td><c:if test="${not empty pub.properties.status && pub.properties.article != 'qcorereport non-peer-reviewed' && pub.properties.article != 'qcorereport peer-reviewed'}"><c:out value="${pub.properties.status}"/></c:if></td>
+							<td><c:if test="${not empty pub.properties.year}"><c:out value="${pub.properties.year}" /></c:if></td>
+							<%-- <td><c:if test="${not empty pub.properties.authorsList}"><c:out value="${pub.properties.authorsList}" /></c:if></td> --%>
 		                </tr>
 		            </c:forEach>
 		        </table>
@@ -102,13 +106,41 @@
 		</c:choose>
 		    </div>
 		<!-- </span> -->
+<div id="pagination">
+    <c:url value="/viewpublication" var="prev">
+        <c:param name="page" value="${page-1}"/>
+    </c:url>
+    <c:if test="${page > 1}">
+        <a href="<c:out value="${prev}" />" class="pn prev">Prev</a>
+    </c:if>
+
+    <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
+        <c:choose>
+            <c:when test="${page == i.index}">
+                <span>${i.index}</span>
+            </c:when>
+            <c:otherwise>
+                <c:url value="/viewpublication" var="url">
+                    <c:param name="page" value="${i.index}"/>
+                </c:url>
+                <a href='<c:out value="${url}" />'>${i.index}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    <c:url value="/viewpublication" var="next">
+        <c:param name="page" value="${page + 1}"/>
+    </c:url>
+    <c:if test="${page + 1 <= maxPages}">
+        <a href='<c:out value="${next}" />' class="pn next">Next</a>
+    </c:if>
+</div>
 		
 	</div>
 	 
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
 		  <%-- <%@include file="popup.jsp" %>   --%>

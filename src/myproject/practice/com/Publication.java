@@ -1,6 +1,7 @@
 package myproject.practice.com;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -40,6 +41,9 @@ public class Publication {
     private String fund; 
  	
  	@Persistent
+    private String lock; 
+ 	
+ 	@Persistent
     private String status; 
  	
  	@Persistent
@@ -77,8 +81,18 @@ public class Publication {
  	
  	@Persistent
     private String project;
+ 	
+ 	@Persistent
+	private List<String> authorsList;
 
- 	public String getKey() {
+ 	public List<String> getAuthorsList() {
+		return authorsList;
+	}
+	public void setAuthorsList(List<String> authorsList) {
+		this.authorsList = authorsList;
+	}
+	
+	public String getKey() {
 		return key;
 	}
 	public void setKey(String key) {
@@ -132,6 +146,10 @@ public class Publication {
 		return fund;
 	}
 	
+	public String getLock() {
+		return lock;
+	}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -176,6 +194,9 @@ public class Publication {
 	}
 	public void setFund(String fund) {
 		this.fund = fund;
+	}
+	public void setLock(String lock) {
+		this.lock = lock;
 	}
 	public void setStatus(String status) {
 		this.status = status;

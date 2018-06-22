@@ -60,13 +60,14 @@
 			         <ul class="nav nav-pills">
 			         			<a href="showbanner" class="btn btn-round" role="button" >Show banner</a><br>
 			         			<a href="correctPublication" class="btn btn-round" role="button" >Correct publication details</a><br>
-							  <a href="getmailSubscriptions" class="btn btn-round" role="button" >Get email subscriptions</a><br>
+							  <!-- <a href="getmailSubscriptions" class="btn btn-round" role="button" >Get email subscriptions</a><br> -->
 							  <a href="viewpublication" class="btn btn-round" role="button">View all publications</a><br>
-							  <a href="viewpeople" class="btn  btn-block" role="button">QuakeCoRE community</a>
-							  <a href="selectpublication" class="btn btn-round" role="button" >Change publication status</a><br>
-							  <a href="downloadUserData" class="btn btn-round" role="button" >Download User Data</a><br>
-							  <a href="downloadPubData" class="btn btn-round" role="button" >Download Publication Data</a><br>
-							  <a href="downloadUserPubData" class="btn btn-round" role="button" >Download UserPublication Data</a><br>
+							 <!--  <a href="viewpeople" class="btn  btn-block" role="button">QuakeCoRE community</a> -->
+							 <!--  <a href="selectpublication" class="btn btn-round" role="button" >Change publication visibility status</a><br> -->
+							  <a href="downloadUserData" class="btn btn-round" role="button" >Download User Details</a><br>
+							  <a href="downloadpub" class="btn btn-round" role="button" >Download Publication Details</a><br>
+							  <a href="downloadUserPubData" class="btn btn-round" role="button" >Download User-Publication Details</a><br>
+							  <a href="downloadAuserspub" class="btn btn-round" role="button" >Download a User's Publications</a><br>
 					 </ul>
 			   </form>
 	 </div>
@@ -74,7 +75,7 @@
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
 	<script  src="/lib/jquery-min-latest.js"></script>

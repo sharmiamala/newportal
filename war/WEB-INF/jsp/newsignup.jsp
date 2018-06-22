@@ -11,8 +11,6 @@
 		<link href="/css/jumbotron-narrow.css" rel="stylesheet">
 		
 		<title>QuakeCoRE</title>
-		
-	
 	
 	</head>
 
@@ -35,16 +33,14 @@
 				<div id="content" class="content-width">
 				  	<div class="container"> 
     <div class="jumbotron">
-  <h4 class="form-heading">Thank you for signing up. Your request has been sent to the admin. Your account will be activated as soon as possible and you will be notified through email.</h3>
- 			
-           
-            
+  <h4 class="form-heading">Success. Thank you for signing up.</h3>
+ 			<!-- <h4 class="form-heading">Thank you for signing up. Your request has been sent to the admin. Your account will be activated as soon as possible and you will be notified through email.</h3> -->
           </ul>
    </div>
    		 </div> 
 			  	 </div>	
 			     <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 				  
 		</div>

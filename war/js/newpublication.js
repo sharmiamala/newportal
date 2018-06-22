@@ -8,14 +8,34 @@ $(document).ready(function()
 	{
 		$("#logoutTab").hide();
 	}
-	$(document).ready(function(){
-	    $('[data-toggle="tooltip"]').tooltip({
-	    	template:'<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner" style="text-align:justify"></div></div>',
-	        title: "<b>Direct:</b>Research outputs are classified as direct if directly funded (in part or full) by the CoRE.<br><b>Aligned:</b>Research outputs are classified as aligned if they weren’t directly funded in any way by the Core but are within the mission of QuakeCoRE.",
-	        html: true
-	    }); 
+	if($.trim(userid) === 'quakecore.nz@gmail.com')//if admin, show  attribution
+	{
+		$("#lock-attrib").show();
+		$("#attrib").show();
+	}
+	$('#authorsList').searchableOptionList({
+	    maxHeight: '200px'
 	});
-	//console.log("inside of js "+($($('#temp > div')[14]).html()));
+	var ticked=$('#templink').text();
+	//console.log(ticked);
+	if(ticked === null || $.trim(ticked) === "")
+	{
+		
+	}
+	else
+		{
+		console.log("got inside");
+		$('#authorsList option').each(function(){
+			var value=$(this).val() ;
+			/*console.log(value);*/
+			
+			if(ticked.indexOf(value) != -1)
+			{
+				$(this).prop('selected', true);
+		    }
+		});
+		}
+	
 	var year	=	($($('#temp > div')[0]).html() != "") ? ($($('#temp > div')[0]).html()) : "";
 	var fund	=	($($('#temp > div')[1]).html() != "") ? ($($('#temp > div')[1]).html()) : "";
 	var status	=	($($('#temp > div')[2]).html() != "") ? ($($('#temp > div')[2]).html()) : "";
@@ -32,23 +52,31 @@ $(document).ready(function()
 	var publicationNo	=	($($('#temp > div')[13]).html() != "") ? ($($('#temp > div')[13]).html()) : "";
 	var descOutputOther= ($($('#temp > div')[14]).html() != "") ? ($($('#temp > div')[14]).html()) : "";
 	var project= ($($('#temp > div')[15]).html() != "") ? ($($('#temp > div')[15]).html()) : "";
+	var publishDate= ($($('#temp > div')[16]).html() != "") ? ($($('#temp > div')[16]).html()) : "";
+	var lock = ($($('#temp > div')[17]).html() != "") ? ($($('#temp > div')[17]).html()) : "";
+	var aff = ($($('#temp > div')[18]).html() != "") ? ($($('#temp > div')[18]).html()) : "";
+	
 	if($.trim(editpub) == "edit")
 	{
 		//console.log("GOT In EDIT validation"+year.length);
 		if(publicationNo.length != 0)
 			$('#editNo').val(publicationNo);
+	
 		
 	if(year.length != 0)
 		$('#year').val(year);
 	
 	if(fund.length != 0)
 		$('#fund').val(fund);
-	
+	if(lock.length != 0)
+		$('#lock').val(lock);
 	if(status.length != 0)
 		$('#status').val(status);
 	
 	if(article.length != 0)
 		$('#article').val(article);
+	if(aff.length != 0)
+		$('#aff').val(aff);
 	
 	if(project.length != 0)
 		$('#project').val(project);
@@ -97,6 +125,12 @@ $(document).ready(function()
 		$('#publisher').val(publisher);
 	else
 		$('#publisher').val("");
+	if(publishDate.length != 0)
+		$('#publishDate').val(publishDate);
+	else
+		$('#publishDate').val("");
+	
+    
 	$('#btn-new-pub').hide();
 	}
 	else
@@ -106,7 +140,7 @@ $(document).ready(function()
         document.getElementById("author").focus(); 
         document.getElementById("title").value			=	""; 
     	document.getElementById("venueName").value		=	""; 
-    	document.getElementById("descOutputOther").value		=	""; 
+    	document.getElementById("descOutputOther").value=	""; 
     	document.getElementById("project").value		=	""; 
     	document.getElementById("volume").value			=	""; 
     	document.getElementById("page").value			=	""; 
@@ -114,46 +148,54 @@ $(document).ready(function()
     	document.getElementById("url").value			=	""; 
     	document.getElementById("dates").value			=	""; 
     	document.getElementById("publisher").value		=	""; 
+    	document.getElementById("publishDate").value	=	""; 
+    	
+    	
 		}
     $("select").change(function(){
     	//console.log("moves HERE here");
     	var article	=	document.getElementById("article").value;
     	var status	=	document.getElementById("status").value;
-    	
-    	
-		
+    	if(article === "Quakecore report peer-reviewed"||article === "Quakecore report non-peer-reviewed")
+    		{
+    		$("#pubstatus").hide();
+    		}
+    	else
+    		{
+    		$("#pubstatus").show();
+    		}
     	if(status === "Published" && article === "Journal")
 		{
     	$("#venueDiv").show();
 		$("#descDiv").hide();
 		$("#volumeDiv").show();
-		$("#urlDiv").show();
 		$("#pageDiv").show();
 		$("#locationDiv").hide();
 		$("#dateDiv").hide();
 		$("#publisherDiv").hide();
+		$("#publishDateDiv").show();
 		}
 		else if(status === "Published" && article === "Conference")
 		{
 		$("#venueDiv").show();
 		$("#locationDiv").show();
 		$("#descDiv").hide();
-		$("#pageDiv").show();
+		$("#pageDiv").hide();
 		$("#dateDiv").show();
 		$("#volumeDiv").hide();
-		$("#urlDiv").hide();
 		$("#publisherDiv").hide();
+		$("#publishDateDiv").hide();
 		}
 		else if(status === "Published" && article === "Book")
 		{
 		$("#venueDiv").hide();
-		$("#pageDiv").show();
+		$("#pageDiv").hide();
 		$("#publisherDiv").show();
 		$("#descDiv").hide();
 		$("#locationDiv").hide();
 		$("#dateDiv").hide();
 		$("#volumeDiv").hide();
-		$("#urlDiv").hide();
+		$("#publishDateDiv").hide();
 		}
 		else if(status === "Published" && article === "Book chapter")
 		{
@@ -164,18 +206,18 @@ $(document).ready(function()
 		$("#descDiv").hide();
 		$("#dateDiv").hide();
 		$("#volumeDiv").hide();
-		$("#urlDiv").hide();
+		$("#publishDateDiv").hide();
 		}
 		else if(status === "Published" && (article === "Peer-reviewed" || article === "Non peer-reviewed"))
 		{
 		$("#venueDiv").show();
-		$("#pageDiv").show();
+		$("#pageDiv").hide();
 		$("#dateDiv").show();
 		$("#venueName").show();
 		$("#descDiv").show();
 		$("#publisherDiv").hide();
 		$("#volumeDiv").hide();
-		$("#urlDiv").hide();
+		$("#publishDateDiv").hide();
 		}
 		else if((status === "Accepted" || status === "Submitted") && article === "Book" )
 		{
@@ -183,7 +225,7 @@ $(document).ready(function()
 		$("#descDiv").hide();
 		$("#pageDiv").hide();
 		$("#volumeDiv").hide();
-		$("#urlDiv").hide();
+		$("#publishDateDiv").hide();
 		$("#locationDiv").hide();
 		$("#dateDiv").hide();
 		$("#publisherDiv").hide();
@@ -194,7 +236,7 @@ $(document).ready(function()
 		$("#descDiv").hide();
 		$("#pageDiv").hide();
 		$("#volumeDiv").hide();
-		$("#urlDiv").hide();
+		$("#publishDateDiv").hide();
 		$("#locationDiv").hide(); 
 		$("#dateDiv").hide();
 		$("#publisherDiv").hide();
@@ -221,7 +263,26 @@ validate=function(id)
 	var url				=	document.getElementById("url").value;
 	var dates			=	document.getElementById("dates").value
 	var publisher		=	document.getElementById("publisher").value;
-	if(!isValidInput(project))
+	var publishDate		=	document.getElementById("publishDate").value;
+	var lock 			=   document.getElementById("lock").value;
+	var aff				=   document.getElementById("aff").value;
+	var authorsList=[];
+	$('#authorsList option:selected').each(function(){
+		authorsList[authorsList.length]=$(this).val();
+	});
+	
+	//if admin, then authorslist should not be empty
+	if($.trim(userid) === 'quakecore.nz@gmail.com' && (!isValid(authorsList)))
+	{
+		$('#err').html("Link authors AI/PI please");
+		$('#messagebox').fadeIn().delay(2000).fadeOut();
+	    $("html, body").animate({ scrollTop: 0 }, "slow");
+		return false;
+	}
+    console.log("------------list in validate from js----------------");
+    console.log(authorsList);
+    
+    if(!isValidInput(project))
 	{
 	//document.getElementById("project").value="";  
     document.getElementById("project").focus(); 
@@ -254,7 +315,7 @@ validate=function(id)
     $("html, body").animate({ scrollTop: 0 }, "slow");
 	return false;
 	}
-	if(article === "Journal" || article === "Conference" ||  article === "Book chapter" || article === "Peer-reviewed" || article === "Non peer-reviewed")
+	if(article === "Journal" || article === "Conference" ||  article === "Book chapter" || article === "Peer-reviewed" || article === "Non peer-reviewed" || article === "Poster" )
 	{
 		if(!isValid(venueName) || !isValidInput(venueName))
 		{
@@ -268,21 +329,11 @@ validate=function(id)
 	    $("html, body").animate({ scrollTop: 0 }, "slow");
 		return false;
 		}
+		
 	}
 	if(status === "Published")
 		{
-			if(!isValid(page) || !isValidInput(page))
-			{
-			//document.getElementById("page").value="";  
-		    document.getElementById("page").focus(); 
-		    $('#err').html("Please enter valid number of pages");
-		    if(!isValidInput(page)){
-			     $('#err').html("Please avoid &,< and > symbols in pages");
-			    }
-		    $('#messagebox').fadeIn().delay(2000).fadeOut();
-		    $("html, body").animate({ scrollTop: 0 }, "slow");
-			return false;
-			}
+			
 			if( article === "Book" ||  article === "Book chapter" )
 			{
 				if(!isValid(publisher) || !isValidInput(publisher))
@@ -301,6 +352,18 @@ validate=function(id)
 		
 			if(article === "Journal" )
 			{
+				if(!isValid(page) || !isValidInput(page))
+				{
+				//document.getElementById("page").value="";  
+			    document.getElementById("page").focus(); 
+			    $('#err').html("Please enter valid number of pages");
+			    if(!isValidInput(page)){
+				     $('#err').html("Please avoid &,< and > symbols in pages");
+				    }
+			    $('#messagebox').fadeIn().delay(2000).fadeOut();
+			    $("html, body").animate({ scrollTop: 0 }, "slow");
+				return false;
+				}
 				if(!isValid(volume) || !isValidInput(volume))
 				{
 				//document.getElementById("volume").value="";  
@@ -308,6 +371,18 @@ validate=function(id)
 			    $('#err').html("Please enter valid volume and issue numbers");
 			    if(!isValidInput(volume)){
 				     $('#err').html("Please avoid &,< and > symbols in volume");
+				    }
+			    $('#messagebox').fadeIn().delay(2000).fadeOut();
+			    $("html, body").animate({ scrollTop: 0 }, "slow");
+				return false;
+				}
+				if(!isValid(publishDate) || !isValidInput(publishDate) )
+				{
+				//document.getElementById("publishDate").value="";  
+			    document.getElementById("publishDate").focus(); 
+			    $('#err').html("Please enter the publishDate");
+			    if(!isValidInput(publishDate)){
+				     $('#err').html("Please avoid &,< and > symbols in publishDate");
 				    }
 			    $('#messagebox').fadeIn().delay(2000).fadeOut();
 			    $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -359,11 +434,11 @@ validate=function(id)
 				
 				}
 			
-			if(isValid(url) && !isValidInput(url) )
+			if(isValid(url) && !isValidUrl(url) )
 			{
 			//document.getElementById("url").value="";  
 		    document.getElementById("url").focus(); 
-		    $('#err').html("Please avoid &,< and > symbols in DOI");
+		    $('#err').html("Please avoid < and > symbols in DOI");
 		    $('#messagebox').fadeIn().delay(2000).fadeOut();
 		    $("html, body").animate({ scrollTop: 0 }, "slow");
 			return false;
@@ -377,8 +452,8 @@ validate=function(id)
 			$('#page').val("");
 		if ($("#volumeDiv").is(":hidden"))
 			$('#volume').val("");
-		if ($("#urlDiv").is(":hidden"))
-			$('#url').val("");
+		if ($("#publishDateDiv").is(":hidden"))
+			$('#publishDate').val("");
 		if ($("#locationDiv").is(":hidden"))
 			$('#location').val("");
 		if ($("#dateDiv").is(":hidden"))
@@ -412,5 +487,13 @@ var isValidInput = function(text) {
     flag = false;
     return flag;
 }
+var isValidUrl = function(text) {
+    var flag = true;
+   // var namePattern =  /^[a-z]+$/i;
+    if(text.indexOf('<') > -1 || text.indexOf('>') > -1)
+    flag = false;
+    return flag;
+}
+
 
 });

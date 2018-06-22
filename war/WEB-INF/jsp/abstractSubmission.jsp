@@ -115,7 +115,7 @@
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
 		 	   

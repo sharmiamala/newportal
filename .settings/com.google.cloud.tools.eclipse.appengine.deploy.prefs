@@ -4,5 +4,5 @@ include.optional.configuration.files=false
 project.bucket=
 project.id=quakecore-portal
 project.previousVersion.stop=false
-project.promote=false
+project.promote=true
 project.version=

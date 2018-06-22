@@ -69,8 +69,7 @@
 								    </div>
 							  		
 									<a href="forgotpassword" class="btn-link">Forgot Password</a> |
-									<a href="signup" class="btn-link"> Sign up</a> |
-									<a href="mailto:quakecore.nz@gmail.com">Problem signing in?</a>
+									<a href="mailto:quakecore@canterbury.ac.nz">Problem logging in?</a>
 								 	<button type="submit" class="myButton" id="btn-login" data-toggle="modal" data-target="#modalbox" onclick="return login()">Submit</button>
 							  </form>
 						 </div>
@@ -78,7 +77,7 @@
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
 			

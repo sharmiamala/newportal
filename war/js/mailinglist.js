@@ -82,7 +82,7 @@ $(document).ready(function()
 	
 	function intoServer(emaillist)
 	{
-		//alert(emaillist);
+		alert(emaillist);
 		//alert("alrady ticked "+ticked);
 		var listJson={};
 		for (var index = 0; index < emaillist.length; index++) {

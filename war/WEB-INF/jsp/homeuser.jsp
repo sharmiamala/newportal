@@ -60,8 +60,8 @@
 				            <span class="alert alert-success" id="Err"></span>
 				        </p>
 				     </div>
-			   		 <br>
-			         <ul class="nav nav-pills">
+			   		 <!--  <br>
+			         <ul class="nav nav-pills"> 
 							  <a href="editprofile" class="btn  btn-default btn-block" role="button" >Edit profile</a>
 							  <a href="changepassword" class="btn btn-default btn-block" role="button" >Change password</a>
 							  <a href="mailinglist" class="btn  btn-default btn-block" role="button">Mailing list subscription</a>
@@ -73,17 +73,67 @@
 							   <a href="https://wiki.canterbury.ac.nz/display/QuakeCore/QuakeCoRE%3A+The+Centre+for+Earthquake+Resilience+Home" target="_blank" class="btn  btn-default btn-block" role="button">QuakeCoRE wikipages</a>
 							  <a href="http://www.quakecore.nz/wp-content/uploads/2017/03/QuakeCoRE_No_Cost_Extension_Application_-2016.doc" class="btn  btn-default btn-block" role="button">No cost extension application</a>
 							  <a href="http://www.quakecore.nz/wp-content/uploads/2017/03/QuakeCoRE_RfP_Variation_Application_-2016.doc" class="btn  btn-default btn-block" role="button">Variation application</a>
-							 <br><br>
+							 <br><br> -->
 							   <!--  <a href="abstractSubmission" class="btn btn-round" role="button">Submit abstract</a> 
 							   <a href="viewMyAbstractSubmissions" class="btn btn-round" role="button">View my abstract submissions</a> -->
-			  		 </ul>
+					 <!--  </ul>   -->
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Portal Profile</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body"><a href="editprofile">Edit profile</a></div>
+        <!-- <div class="panel-body"><a href="changepassword">Change password</a></div> -->
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">QuakeCoRE Publications</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body"><a href="newpublication">Get QuakeCoRE publication number</a></div>
+        <div class="panel-body"><a href="viewmypublications">View/Update my publication details</a></div>
+        <div class="panel-body"><a href="viewpublication">View all QuakeCoRE publications</a></div>
+        <div class="panel-body"><a href="downloadpub">Download Publication Details</a></div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Investigator Tools</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body"> <a href="http://www.quakecore.nz/logo/" target="_blank">Get QuakeCoRE logo & templates</a></div>
+        <div class="panel-body"> <a href="https://wiki.canterbury.ac.nz/display/QuakeCore/QuakeCoRE%3A+The+Centre+for+Earthquake+Resilience+Home" target="_blank">QuakeCoRE wikipages</a></div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Contracting</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body"><a href="http://www.quakecore.nz/wp-content/uploads/2017/03/QuakeCoRE_No_Cost_Extension_Application_-2016.doc">No cost extension application</a></div>
+		<div class="panel-body"><a href="http://www.quakecore.nz/wp-content/uploads/2017/03/QuakeCoRE_RfP_Variation_Application_-2016.doc">Variation application</a></div>
+      </div>
+    </div>
+  </div> 
+							   
+			  
 			   </form>
 	    </div>
     	</div> 
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
   		<script  src="/lib/jquery-min-latest.js"></script>

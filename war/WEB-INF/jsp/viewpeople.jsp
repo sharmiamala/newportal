@@ -50,9 +50,9 @@
       <div id="username"  style="display:none;">
 				${name}
 			</div>
-       <div id="allusers"  style="display:none;">
+       <%-- <div id="allusers"  style="display:none;">
 				${peopleList}
-			</div>
+			</div> --%>
 			  <!-- <div id="search"  class="well well-sm" style="display:block;">
 				Please do a search to find a name in this list.
 				Refresh the page to see latest additions.
@@ -88,7 +88,7 @@
 			  	 </div>	
 			    
 				  <div id="footer"><p><strong>QuakeCoRE | 
-				  </strong><a href="mailto:research@quakecore.nz">research@quakecore.nz</a><strong> | </strong> </p>
+				  </strong><a href="mailto:quakecore@canterbury.ac.nz">quakecore@canterbury.ac.nz</a><strong> | </strong> </p>
 				  </div> 
 		</div>
 		  <%-- <%@include file="popup.jsp" %>   --%>
