@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.google.appengine.api.datastore.Entity" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -77,7 +78,7 @@
 						<th>Article</th>
 						<th>Status</th>
 						<th>Year</th>
-						<!-- <th>AI/PI</th> -->
+						<th>AI/PI</th>
 		            </tr>
 		            <c:forEach var="pub" items="${allPublicationList}">
 		                <tr id="rowFont">
@@ -98,7 +99,8 @@
 							<td><c:if test="${not empty pub.properties.article}"><c:out value="${pub.properties.article}"/></c:if></td>
 							<td><c:if test="${not empty pub.properties.status && pub.properties.article != 'qcorereport non-peer-reviewed' && pub.properties.article != 'qcorereport peer-reviewed'}"><c:out value="${pub.properties.status}"/></c:if></td>
 							<td><c:if test="${not empty pub.properties.year}"><c:out value="${pub.properties.year}" /></c:if></td>
-							<%-- <td><c:if test="${not empty pub.properties.authorsList}"><c:out value="${pub.properties.authorsList}" /></c:if></td> --%>
+							<td><c:if test="${not empty pub.properties.authorsList}"><c:set var = "string1" value = "${pub.properties.authorsList}"/>
+      						<c:set var = "string2" value = "${fn:replace(string1, ']', '')}" /><c:out value="${fn:replace(string2, '[', '')}"/></c:if></td>
 		                </tr>
 		            </c:forEach>
 		        </table>

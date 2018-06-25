@@ -85,10 +85,10 @@ String nextpage="expiry";
 		PreparedQuery pq = datastore.prepare(query);
 		try {
 			List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
-			System.out.println("result size "+results.size());
-			System.out.println(results.get(0).getProperty("organisation").toString());
+			//System.out.println("result size "+results.size());
+			//System.out.println(results.get(0).getProperty("organisation").toString());
 			if (!results.isEmpty()) {
-				System.out.println(results.get(0).getProperty("active"));
+				//System.out.println(results.get(0).getProperty("active"));
 				if(userStatus.equals("false"))
 					results.get(0).setProperty("active",true);
 				else
@@ -123,9 +123,9 @@ String nextpage="expiry";
 		try {
 			List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 		
-			System.out.println(results.size());
+			//System.out.println(results.size());
 			if (!results.isEmpty()) {
-				System.out.println(results.get(0).getProperty("email"));
+				//System.out.println(results.get(0).getProperty("email"));
 
 				if (Strings.isNullOrEmpty(results.get(0).getProperty("mailLists").toString())) {
 					System.out.println("Its NUll here...");
@@ -134,11 +134,11 @@ String nextpage="expiry";
 				else {
 					subslist = results.get(0).getProperty("mailLists").toString();
 					if (!Strings.isNullOrEmpty(subslist)) {
-						System.out.println(subslist + " contents sublist");
+						//System.out.println(subslist + " contents sublist");
 						request.setAttribute("subslist", subslist);
 
 					} else {
-						System.out.println(" empty sublist");
+						//System.out.println(" empty sublist");
 						request.setAttribute("subslist", null);
 					}
 				}
@@ -166,8 +166,8 @@ String nextpage="expiry";
 			bodyText.append("Please forward this message to your co-authors."+"\r\n\n");
 			bodyText.append("Thank you,"+"\r\n");
 			bodyText.append("The QuakeCoRE Team");
-			System.out.println(bodyText.toString() +" -sending to:"+receiverEmail);
-			//mm.sendMail(Constants.adminEmailId,receiverEmail, "Your new QuakeCoRE publication number",bodyText.toString() );//TODO: uncomment this before deploying live
+			//System.out.println(bodyText.toString() +" -sending to:"+receiverEmail);
+			mm.sendMail(Constants.adminEmailId,receiverEmail, "Your new QuakeCoRE publication number",bodyText.toString() );
 		}
 	}
 	

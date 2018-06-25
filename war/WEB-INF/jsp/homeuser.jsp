@@ -86,7 +86,7 @@
       </div>
       <div id="collapse1" class="panel-collapse collapse">
         <div class="panel-body"><a href="editprofile">Edit profile</a></div>
-        <!-- <div class="panel-body"><a href="changepassword">Change password</a></div> -->
+        <div class="panel-body"><a href="changepassword">Change password</a></div>
       </div>
     </div>
     <div class="panel panel-default">

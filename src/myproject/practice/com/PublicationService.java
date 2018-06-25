@@ -131,16 +131,16 @@ public class PublicationService {
 			}
 			else
 			{	
-				System.out.println(" NEW: ARRAY :::::::  "+authorArray.length);
+				//System.out.println(" NEW: ARRAY :::::::  "+authorArray.length);
 				newlist =  new ArrayList<String>(Arrays.asList(authorArray));
-				System.out.println(" newlist 1111111111 :::::::  "+newlist.size());
+				//System.out.println(" newlist 1111111111 :::::::  "+newlist.size());
 			}
 			if(!session.getAttribute("email").equals(Constants.adminEmailId))//if not admin add the current user to the authorsList as well
 			{
 				String emailid=session.getAttribute("email").toString();
 				newlist.add(emailid);				
 			}
-			System.out.println(newlist+" newlist 222222222 ::::::::: " + newlist.size());
+			//System.out.println(newlist+" newlist 222222222 ::::::::: " + newlist.size());
 			if (newlist.size()>0)
 			{	
 			newpub.setProperty("authorsList",newlist);
@@ -157,7 +157,7 @@ public class PublicationService {
 				datastore1.put(newpub);//stores the publication in Publication table
 				for(int p=0;p<newlist.size();p++)
 				{
-				String email=newlist.get(p);System.out.println(" ****************  " +email);
+				String email=newlist.get(p);//System.out.println(" ****************  " +email);
 				saveInUserPublication(email, publicationNo);//stores the publicationNo to each AI/PI in UserPublication table
 				}
 				//System.out.println(" ****************  " + number);
@@ -216,9 +216,9 @@ public class PublicationService {
 			try {
 				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 			
-				System.out.println("results size: "+results.size());
+				//System.out.println("results size: "+results.size());
 				if (!results.isEmpty()) {
-					System.out.println(results.get(0).getProperty("isVisible"));
+					//System.out.println(results.get(0).getProperty("isVisible"));
 					Boolean pubStatus=(Boolean) results.get(0).getProperty("isVisible");
 					System.out.println("pubStatus -----"+pubStatus);
 					if(pubStatus)
@@ -230,7 +230,7 @@ public class PublicationService {
 						results.get(0).setProperty("isVisible",true);
 					}
 					nextpage="itemDetailsChanged";
-					System.out.println("next page1" +nextpage);
+					//System.out.println("next page1" +nextpage);
 					datastore.put(results.get(0));
 				}
 			} catch (Exception e) {
@@ -241,7 +241,7 @@ public class PublicationService {
 		}
 		
 		}
-		System.out.println("next page2 " +nextpage);
+		//System.out.println("next page2 " +nextpage);
 		return nextpage;
 	}
 	
@@ -256,20 +256,20 @@ public class PublicationService {
 		try {
 				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 				
-				System.out.println(results);
+				//System.out.println(results);
 				if (!results.isEmpty())
 				{
 						try{
 								//if(!Strings.isNullOrEmpty(results.get(0).getProperty("publicationList").toString()))
 								if(results.get(0).getProperty("publicationList") != null)
 								{
-								System.out.println("got INSIDE FOR has property");
+								//System.out.println("got INSIDE FOR has property");
 								userpublist = (List<Integer>)results.get(0).getProperty("publicationList");
-								System.out.println("while retrieved: "+userpublist);
+								//System.out.println("while retrieved: "+userpublist);
 								}
 								
 								userpublist.add(displayNo);
-								System.out.println("after adding: "+userpublist);
+								//System.out.println("after adding: "+userpublist);
 								results.get(0).setProperty("publicationList",userpublist);
 								datastore.put(results.get(0));
 							}
@@ -306,14 +306,14 @@ public class PublicationService {
 		try {
 				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 				List<Integer> userpublist=new ArrayList<Integer>();
-				System.out.println(results);
+				//System.out.println(results);
 				if (!results.isEmpty()) 
 				{
 					if(results.get(0).hasProperty("publicationList"))
 					{
 						userpublist = (List<Integer>) results.get(0).getProperty("publicationList");
 						
-						System.out.println("while retrieved dwe: "+userpublist);
+						//System.out.println("while retrieved dwe: "+userpublist);
 						
 						for (int ind=0;ind<userpublist.size();ind++)
 						{
@@ -322,12 +322,12 @@ public class PublicationService {
 							//System.out.println("I am a String: "+eachno);
 							if(eachno.equals(no))
 				            {
-				            	System.out.println(userpublist.get(ind)+" matched "+displayNo);
+				            	//System.out.println(userpublist.get(ind)+" matched "+displayNo);
 				            	userpublist.remove(ind);
 				            }
 				        }
 						
-						System.out.println("after removing:: "+userpublist);
+						//System.out.println("after removing:: "+userpublist);
 						results.get(0).setProperty("publicationList",userpublist);
 						datastore.put(results.get(0));
 					}

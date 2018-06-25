@@ -76,7 +76,7 @@
 						<th>Article</th>
 						<th>Status</th>
 						<th>Year</th>
-						<!-- <th>AI/PI</th> -->
+						<th>AI/PI</th>
 						<th>Action</th>
 						
 						
@@ -104,7 +104,8 @@
 							<td><c:if test="${not empty pub.properties.article}"><c:out value="${pub.properties.article}"/></c:if> </td>
 							<td><c:if test="${not empty pub.properties.status && pub.properties.article != 'qcorereport non-peer-reviewed' && pub.properties.article != 'qcorereport peer-reviewed'}"><c:out value="${pub.properties.status}" /></c:if> </td>
 							<td><c:if test="${not empty pub.properties.year}"><c:out value="${pub.properties.year}" /></c:if></td>
-							<%-- <td><c:if test="${not empty pub.properties.authorsList}"><c:out value="${pub.properties.authorsList}" /></c:if></td> --%>
+							<td><c:if test="${not empty pub.properties.authorsList}"><c:set var = "string1" value = "${pub.properties.authorsList}"/>
+      <c:set var = "string2" value = "${fn:replace(string1, ']', '')}" /> <c:out value="${fn:replace(string2, '[', '')}" /></c:if></td> 
 							<td><c:if test="${pub.properties.lock!='locked'}"><button type="submit" class="myButton" name="actionBtn" value="<c:out value="${pub.properties.publicationId}" />">Update</button ></c:if></td>
 							
 		                </tr>

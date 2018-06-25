@@ -204,7 +204,7 @@ public class UserController {
 	//relating to download data ***************
 	@RequestMapping(value = "/downloadAuserspubData", method = RequestMethod.POST)
 	public ModelAndView downloadAuserspubData(ModelMap model,HttpSession session,HttpServletRequest request,HttpServletResponse response){
-		System.out.println("downloadAuserspubData");
+		//System.out.println("downloadAuserspubData");
 		
 		if(session == null || session.getAttribute("email") == null)
 		{
@@ -216,7 +216,7 @@ public class UserController {
 			
 			if(session.getAttribute("email").equals(Constants.adminEmailId) )
 			{
-				System.out.println(request.getParameter("userList"));
+				//System.out.println(request.getParameter("userList"));
 				String emailId=request.getParameter("userList");
 				response.setContentType("application/csv");   
 				Date date = new Date();
@@ -231,10 +231,10 @@ public class UserController {
 				PreparedQuery pq = datastore.prepare(query);
 				try {
 					List<Entity> userPubs =pq.asList(FetchOptions.Builder.withDefaults());
-					System.out.println(" userPubs : "+userPubs);
+					//System.out.println(" userPubs : "+userPubs);
 					List<Integer> pubs = (List<Integer>) userPubs.get(0).getProperty("publicationList");//if userPubs is empty this will throw exception and its OK.
 					List<Entity> userpubs = getPubDetailedlist(pubs);//gets the pubs of a particular user
-					 System.out.println("downloading pub contents to csv");
+					 //System.out.println("downloading pub contents to csv");
 					 ServletOutputStream writer = response.getOutputStream();
 					 writer = getPubWriter(writer,userpubs,response);
 					 writer.flush();
@@ -295,7 +295,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/downloadUserPubData", method = RequestMethod.GET)
 	public ModelAndView getUserPubData(ModelMap model,HttpSession session,HttpServletRequest request,HttpServletResponse response){
-		System.out.println("getUserPubData");
+		//System.out.println("getUserPubData");
 		
 		if(session == null || session.getAttribute("email") == null)
 			return new ModelAndView( "expiry");
@@ -306,7 +306,7 @@ public class UserController {
 		response.setContentType("application/csv");   
 		Date date = new Date();
 		String fileName =date.toString()+"-"+"userPublications.csv";
-		System.out.println("fileName ---------- "+fileName);
+		//System.out.println("fileName ---------- "+fileName);
 		response.setHeader("content-disposition","attachment;filename ="+fileName); 
 		ServletOutputStream writer;
 		
@@ -317,7 +317,7 @@ public class UserController {
 			List<Entity> userpubs = pq.asList(FetchOptions.Builder.withDefaults());
 			
 	writer = response.getOutputStream();
-    System.out.println("downloading userpub contents to csv");
+   //System.out.println("downloading userpub contents to csv");
 
     writer.print("email,publications");
     writer.println();            
@@ -352,7 +352,7 @@ else
 	    
 	@RequestMapping(value = "/downloadUserData", method = RequestMethod.GET)
 	public ModelAndView downloadUserCSV(ModelMap model,HttpSession session,HttpServletRequest request,HttpServletResponse response){
-		System.out.println("downloadUserData");
+		//System.out.println("downloadUserData");
 		
 		if(session == null || session.getAttribute("email") == null)
 			return new ModelAndView( "expiry");
@@ -363,7 +363,7 @@ else
 		response.setContentType("application/csv");   
 		Date date = new Date();
 		String fileName =date.toString()+"-"+"users.csv";
-		System.out.println("fileName ---------- "+fileName);
+		//System.out.println("fileName ---------- "+fileName);
 		response.setHeader("content-disposition","attachment;filename ="+fileName); 
 		ServletOutputStream writer;
 		
@@ -374,7 +374,7 @@ else
 			List<Entity> users = pq.asList(FetchOptions.Builder.withDefaults());
 			
 	writer = response.getOutputStream();
-    System.out.println("downloading user contents to csv");
+    //System.out.println("downloading user contents to csv");
 
     writer.print("email,firstname,lastname,position,organisation,orcId,active,category,signupdate,lastlogindate,gender,ethnicity,country,iwi,comments,");
     writer.println();            
@@ -416,7 +416,7 @@ else
 	
 	@RequestMapping(value = "/downloadPubData", method = RequestMethod.POST)
 	public ModelAndView downloadPubCSV(ModelMap model,HttpSession session,HttpServletRequest request,HttpServletResponse response){
-		System.out.println("downloadPubData");
+		//System.out.println("downloadPubData");
 		
 		if(session == null || session.getAttribute("email") == null)
 			return new ModelAndView( "expiry");
@@ -428,9 +428,9 @@ else
 				response.setContentType("application/csv");  
 				Date date=new Date();
 				String pubtype = request.getParameter("pub").toString();
-				System.out.println("pub ---------- "+pubtype);
+				//System.out.println("pub ---------- "+pubtype);
 				String fileName =date.toString()+"-"+(pubtype.concat("Publications.csv").replaceAll("\\s+",""));
-				System.out.println("fileName ---------- "+fileName);
+				//System.out.println("fileName ---------- "+fileName);
 				response.setHeader("content-disposition","attachment;filename ="+fileName); 
 				try {
 					
@@ -443,14 +443,14 @@ else
 					query1.setFilter(new Query.FilterPredicate("__key__", FilterOperator.EQUAL, KeyFactory.createKey("UserPublication", emailId)));
 					PreparedQuery pq1 = datastore.prepare(query1);
 					List<Entity> userPubs =pq1.asList(FetchOptions.Builder.withDefaults());
-					System.out.println("userPubs : "+userPubs.get(0).getProperty("publicationList"));//if userPubs is empty this will throw exception and its OK.
+					//System.out.println("userPubs : "+userPubs.get(0).getProperty("publicationList"));//if userPubs is empty this will throw exception and its OK.
 					List<Integer> pubs = (List<Integer>) userPubs.get(0).getProperty("publicationList");
 					userpubs = getPubDetailedlist(pubs);//gets the pubs of a particular user
 					
 				}
 				else
 				{
-				System.out.println("not mine  ");	
+				//System.out.println("not mine  ");	
 				Query query2 = new Query("Publication");
 				if((!pubtype.equals("all")) && (!pubtype.equals("my")))
 				{
@@ -459,7 +459,7 @@ else
 				PreparedQuery pq2 = datastore.prepare(query2);
 				userpubs = pq2.asList(FetchOptions.Builder.withDefaults());
 				}
-				System.out.println("downloading pub contents to csv");
+				//System.out.println("downloading pub contents to csv");
 				 ServletOutputStream writer = response.getOutputStream();
 				 writer = getPubWriter(writer,userpubs,response);
 				 writer.flush();
@@ -494,7 +494,7 @@ else
 	@RequestMapping(value = "/newpublication", method = RequestMethod.GET)
 	public ModelAndView editPublicationPage(@RequestParam(value = "id", required = false) String pubid,
 			ModelMap model,HttpSession session) {
-		System.out.println(" ######################################  /newpublication GET");
+		//System.out.println(" ######################################  /newpublication GET");
 		 if(session == null || session.getAttribute("email") == null)
 			 return new ModelAndView( "expiry");
 			else
@@ -546,7 +546,7 @@ else
 	}
 	@RequestMapping(value = "/newsignup", method = RequestMethod.POST)
 	public String newsignupPage(ModelMap model) {
-		System.out.println("got here for /newsignup POST ");
+		//System.out.println("got here for /newsignup POST ");
 		return "newsignup";
 
 	}
@@ -601,7 +601,7 @@ else
 	
 	@RequestMapping(value = "/downloadAuserspub", method = RequestMethod.GET)
 	public String downloadAuserspub(ModelMap model,HttpSession session) {
-		System.out.println("got here for /downloadAuserspub ");
+		//System.out.println("got here for /downloadAuserspub ");
 		if(session == null || session.getAttribute("email") == null)
 			 return "expiry";
 			else
@@ -696,7 +696,7 @@ else
 	}
 	@RequestMapping(value = "/activated", method = RequestMethod.GET)
 	public String getuseractivatedPage(ModelMap model,HttpServletRequest request, HttpServletResponse response,HttpSession session) {
-		System.out.println("got here for /activated ");
+		//System.out.println("got here for /activated ");
 		String page="expiry";
 		if (session != null && session.getAttribute("email") != null) {
 			if(!(session.getAttribute("email").equals(Constants.adminEmailId)))
@@ -905,7 +905,7 @@ else
 	}*/
 	
 	public List<Integer> getUserPublicationList(String emailId)
-	{System.out.println("getUserPublicationListgetUserPublicationListgetUserPublicationListgetUserPublicationListgetUserPublicationList");
+	{//System.out.println("getUserPublicationList");
 		List<Integer> absList=new ArrayList<Integer>();
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query query = new Query("UserPublication");
@@ -919,7 +919,7 @@ else
 				System.out.println("no publications yet");
 			} else {
 				try {
-					System.out.println("His publicationss are : " + userAbs.get(0).getProperty("publicationList"));
+					//System.out.println("His publicationss are : " + userAbs.get(0).getProperty("publicationList"));
 					absList = (List<Integer>) userAbs.get(0).getProperty("publicationList");
 					
 				} catch (Exception e) {
@@ -930,7 +930,7 @@ else
 
 		} catch(Exception e)
 		{
-			System.out.println("Error so entered here");
+			System.out.println("Error so.. entered here");
 			e.printStackTrace();
 		}
 		//System.out.println(absList);
@@ -963,7 +963,7 @@ else
 		//System.out.println("Query : "+query);
 		try {
 			List<Entity> userPubs =pq.asList(FetchOptions.Builder.withDefaults());
-			System.out.println(" userPubs : "+userPubs);
+			//System.out.println(" userPubs : "+userPubs);
 			if (userPubs.isEmpty()) {
 				System.out.println("no publications yet");
 			} else {
@@ -1026,7 +1026,7 @@ else
 		query1.addSort("publicationId", SortDirection.DESCENDING);
 		//Query query1 = new Query("Publication").setFilter(new Query.FilterPredicate("isVisible", FilterOperator.EQUAL, visible)).addSort("publicationId",Query.SortDirection.ASCENDING);
 		PreparedQuery pq = datastore.prepare(query1);
-		System.out.println("Query : "+query1);
+		//System.out.println("Query : "+query1);
 		try {
 			List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());//CHECK IT 
 			if (results.isEmpty()) {
@@ -1062,17 +1062,17 @@ else
 	
 	// to get all users
 			public List getUsers() {
-				System.out.println("got here for getUsers ++++++++++++++++++++++++++++++++ ");
+				//System.out.println("got here for getUsers ++++++++++++++++++++++++++++++++ ");
 				Boolean isActiveMember=true;
 				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 				Query query = new Query("User").addSort("firstname", Query.SortDirection.ASCENDING);
 				//query.setFilter(new Query.FilterPredicate("active", FilterOperator.EQUAL, isActiveMember));//members who are active (active=true)
 				PreparedQuery pq = datastore.prepare(query);
-				System.out.println("Query : "+query);
+				//System.out.println("Query : "+query);
 				List<Entity> results = new ArrayList();
 				try {
 					results = pq.asList(FetchOptions.Builder.withDefaults());//CHECK IT
-					System.out.println("result size " + results.size()+results.get(0).getProperty("firstname"));
+					//System.out.println("result size " + results.size()+results.get(0).getProperty("firstname"));
 					return results;
 
 				} catch (Exception e) {
@@ -1087,7 +1087,7 @@ else
 		@RequestMapping(value = "/viewpeople", method = RequestMethod.GET)
 		public String getviewpeoplePage(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 				ModelMap model) {
-			System.out.println("got here for GET /viewpeople " + model.toString());
+			//System.out.println("got here for GET /viewpeople " + model.toString());
 			String emailId = "";
 			if (session != null && session.getAttribute("email") != null) {
 				emailId = session.getAttribute("email").toString();
@@ -1098,11 +1098,11 @@ else
 			Query query = new Query("User").addSort("firstname", Query.SortDirection.ASCENDING);
 			query.setFilter(new Query.FilterPredicate("active", FilterOperator.EQUAL, isActiveMember));
 			PreparedQuery pq = datastore.prepare(query);
-			System.out.println("Query : "+query);
+			//System.out.println("Query : "+query);
 			
 			try {
 				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());//CHECK IT
-				System.out.println("result size " + results.size()+results.get(0).getProperty("firstname"));
+				//System.out.println("result size " + results.size()+results.get(0).getProperty("firstname"));
 				if (results.isEmpty()) {
 					model.addAttribute("peopleList", null);
 				} else {
@@ -1186,7 +1186,7 @@ else
 	
 	public boolean containsPubId(List<Integer> user_pubList, Integer publicationId) {
 		
-		System.out.println(user_pubList+" user_pubList | publicationId "+publicationId);
+		//System.out.println(user_pubList+" user_pubList | publicationId "+publicationId);
 		String pubid = publicationId.toString();
 	    for (int i=0;i<user_pubList.size();i++) {
 	    	//System.out.println("pubs in order "+user_pubList.get(i));
@@ -1202,7 +1202,7 @@ else
 	
 	public ModelAndView getPublication(String emailId, HttpServletRequest request, HttpServletResponse response,
 			ModelMap model, Integer publicationId) throws Exception {
-		System.out.println("COMES TO getPublication in UC");
+		//System.out.println("COMES TO getPublication in UC");
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		//Query quer = new Query("User");
 		Query quer = new Query("User").addSort("firstname", Query.SortDirection.ASCENDING);
@@ -1225,7 +1225,7 @@ else
 		List<Integer> user_pubList=getUserPublicationList(emailId);
 			if(!containsPubId(user_pubList,publicationId))
 			{
-				System.out.println(user_pubList+" =user_pubList does not have publicationId= "+publicationId);
+				//System.out.println(user_pubList+" =user_pubList does not have publicationId= "+publicationId);
 				
 				return new ModelAndView("expiry");
 			}
@@ -1410,16 +1410,16 @@ else
 						}
 						else
 						{		
-							System.out.println(" NEW: ARRAY :::::::  "+authorArray.length);
+							//System.out.println(" NEW: ARRAY :::::::  "+authorArray.length);
 							newlist =  new ArrayList<String>(Arrays.asList(authorArray));
-							System.out.println(" newlist 1111111111 :::::::  "+newlist.size());
+							//System.out.println(" newlist 1111111111 :::::::  "+newlist.size());
 						}
 						if(!session.getAttribute("email").equals(Constants.adminEmailId))//if not admin add the current user to the authorsList as well
 						{
 							String emailid=session.getAttribute("email").toString();
 							newlist.add(emailid);				
 						}
-						System.out.println(newlist+" newlist 222222222 ::::::::: " + newlist.size());
+						//System.out.println(newlist+" newlist 222222222 ::::::::: " + newlist.size());
 						
 						if (newlist.size()>0)
 						results.get(0).setProperty("authorsList",newlist);
@@ -1450,15 +1450,15 @@ else
 					    	
 					    deleteList.removeAll(listTwo);
 					    addList.removeAll(listOne);
-					    System.out.println("deleteList :::: "+deleteList);
-					    System.out.println("addList :::: "+addList);
+					   // System.out.println("deleteList :::: "+deleteList);
+					    //System.out.println("addList :::: "+addList);
 					    
 					   
 					    if(deleteList.size()>0)
 					    {
 					    	for(int p=0;p<deleteList.size();p++)
 							{
-							String email=deleteList.get(p);System.out.println("deleteList ****************  " +email);
+							String email=deleteList.get(p);//System.out.println("deleteList ****************  " +email);
 							PublicationService.deleteFromUserPublication(email, no);//deletes the publicationNo from a user's UserPublication table
 							}
 					    }
@@ -1466,7 +1466,7 @@ else
 					    {
 					    	for(int p=0;p<addList.size();p++)
 							{
-							String email=addList.get(p);System.out.println("addList ****************  " +email);
+							String email=addList.get(p);//System.out.println("addList ****************  " +email);
 							PublicationService.saveInUserPublication(email, no);//stores the publicationNo to a user's UserPublication table
 							}
 					    }
@@ -1520,7 +1520,7 @@ else
 				{
 					authorsList.add(authorArray[a]);
 				}*/
-				System.out.println("authorArray "+authorArray);
+				//System.out.println("authorArray "+authorArray);
 				
 				JSONObject pub_detailsJson = new JSONObject();
 				try {
@@ -1749,7 +1749,7 @@ else
 	public @ResponseBody String checkpLoginDetails(@RequestParam(value = "id", required = false) String emailId,
 			@RequestParam(value = "pwd", required = false) String password, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
-		System.out.println("into /checklogin");
+		//System.out.println("into /checklogin");
 
 		String hashedPassword = UserService.hashPassword(password);
 		//System.out.println(emailId + " - " + password + " - " + hashedPassword);
@@ -1789,7 +1789,7 @@ else
 			}
 		} else {
 			
-			System.out.println("check for normal user loggin");
+			//System.out.println("check for normal user loggin");
 			DatastoreService datastore2 = DatastoreServiceFactory.getDatastoreService();
 			Query query2 = new Query("User");
 			query2.setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, emailId));
@@ -1874,7 +1874,7 @@ else
 
 	public void saveUser(JSONObject userInfo, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
-		System.out.println("got here for /save..........." + userInfo);
+		//System.out.println("got here for /save..........." + userInfo);
 		String uuid = UUID.randomUUID().toString();
 		Entity user = new Entity("User",uuid);
 		List<String> mailSubs=new<String> ArrayList();
@@ -2104,7 +2104,7 @@ else
 	@RequestMapping(value = "/ifExistingUser", method = RequestMethod.POST)
 	public @ResponseBody String ifExistingUser(@RequestParam(value = "userInfo", required = false) String userdetails,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		System.out.println("/ifExistingUser");
+		//System.out.println("/ifExistingUser");
 		String emailId = "";
 		JSONObject user_detailsJson = new JSONObject();
 		if (!Strings.isNullOrEmpty(userdetails)) {
@@ -2143,7 +2143,7 @@ else
 		}
 	}
 	public void createUserPublicationTableEntry(String email){
-		System.out.println("coming to createUserPublicationTableEntry for the new user");
+		//System.out.println("coming to createUserPublicationTableEntry for the new user");
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		List<Integer> userpublist = new ArrayList<Integer>();
 		Entity userpub = new Entity("UserPublication",email);
@@ -2183,7 +2183,7 @@ else
 		String nextpage = "expiry";
 		if (session != null && session.getAttribute("email") != null && session.getAttribute("email").equals(Constants.adminEmailId)) {
 
-			System.out.println("getContactList " + contactList);
+			//System.out.println("getContactList " + contactList);
 			DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 			Query query = new Query("User");
 			PreparedQuery pq = datastore.prepare(query);
@@ -2307,7 +2307,7 @@ else
 
 	@RequestMapping(value = "/sendmail", method = RequestMethod.POST)
 	public ModelAndView sendMail(HttpServletRequest request, ModelMap model) {
-		 System.out.println("/sendmail with temp password");
+		// System.out.println("/sendmail with temp password");
 		String email = request.getParameter("email");
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
 		String requestURL 				= 	request.getScheme() + "://"	+ request.getServerName() + request.getContextPath();
@@ -2319,8 +2319,8 @@ else
 		
 		
 		bodyText.append("Your temporary password is " + tempString + ". Please login and change your password "+requestURL);
-		System.out.println(bodyText.toString());
-		//mm.sendMail(Constants.adminEmailId, email, "QuakeCoRE account reset information",bodyText.toString());//TODO: uncomment this before deploying live
+		//System.out.println(bodyText.toString());
+		mm.sendMail(Constants.adminEmailId, email, "QuakeCoRE account reset information",bodyText.toString());
 		return new ModelAndView("select");
 	}
 
@@ -2361,7 +2361,7 @@ else
 			String emailId = session.getAttribute("email").toString();
 
 			// saves all data that comes from js into User Table
-			System.out.println("inside /saveEmailList" + list);
+			//System.out.println("inside /saveEmailList" + list);
 
 			String subscriptions = "";
 			JSONObject mail_details = new JSONObject();
