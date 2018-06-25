@@ -92,8 +92,8 @@
         <div class="jumbotron">
   <form  method="post"  class="fillform" name="formLogin" action="newpublication">
 
-  <h4>Please only enter publications that are a direct result of QuakeCoRE funding, this could include project funding, scholarship funding or ****</h4>
-   <div id="messagebox" class="alertbox" style="display: none; position: absolute;z-index: 2001;">
+  <h5>Please only enter publications that are a direct result of QuakeCoRE funding; this could include project funding from and RfP Project or Coordinated Project or scholarship funding.</h5>
+  <br><br> <div id="messagebox" class="alertbox" style="display: none; position: absolute;z-index: 2001;">
         <p>
             <span class="alert alert-danger" id="err"></span>
             
