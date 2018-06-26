@@ -231,7 +231,7 @@
 			</div>
 			<br>
 			 <!-- <div class="form-group"> -->
-         <label class="col-xs-4 control-label">Link Authors (AI/PI)</label>
+         <label class="col-xs-4 control-label">AI/PI</label>
 	       <div class="col-xs-8 selectContainer"  id="comboMargin">
 		         <select name="authorsList"  multiple id="authorsList"  style="text-align:left">
 			        <c:forEach var="person" items="${users}">
