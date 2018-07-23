@@ -33,7 +33,7 @@
 						${email}
 						</div>
 						
-						 <h3 class="form-heading">Sign in</h3>
+						 <h3 class="form-heading">QuakeCoRE Investigator Sign in</h3>
 						 <div class="jumbotron">
 						 <!-- <div class="modal" id="loadModal" style="display: none; position: absolute;z-index: 2001;">
 						  <span   class="glyphicon glyphicon-refresh spinning" >Processing...</span>
