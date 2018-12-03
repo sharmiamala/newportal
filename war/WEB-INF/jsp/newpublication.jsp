@@ -231,8 +231,8 @@
 			</div>
 			<br>
 			 <!-- <div class="form-group"> -->
-         <label class="col-xs-4 control-label">AI/PI</label>
-	       <div class="col-xs-8 selectContainer"  id="comboMargin">
+         <label class="col-xs-12 control-label">This publication will be automatically assigned to you, please select other QuakeCoRE PIs or AIs that co-authored this publication</label>
+	       <div class="col-xs-12 selectContainer"  id="comboMargin">
 		         <select name="authorsList"  multiple id="authorsList"  style="text-align:left">
 			        <c:forEach var="person" items="${users}">
 				       <c:if test="${person.properties.email!=email}"><option value="${person.properties.email}">${person.properties.firstname}&nbsp${person.properties.lastname}</option></c:if>
